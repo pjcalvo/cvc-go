@@ -69,6 +69,10 @@ func main() {
 		return
 	}
 
+	fmt.Println("Executing command:")
+	fmt.Printf("   git commit -m %q\n", commitMsg)
+	fmt.Println("────────────────────────────────────────────")
+
 	// Commit
 	cmd := exec.Command("git", "commit", "-m", commitMsg)
 	output, err := cmd.CombinedOutput()
@@ -78,8 +82,5 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Println("Executing command:")
-	fmt.Printf("   git commit -m %q\n", commitMsg)
-	fmt.Println("────────────────────────────────────────────")
 	fmt.Println("✅ Commit successful!")
 }
