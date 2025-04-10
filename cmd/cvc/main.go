@@ -12,15 +12,15 @@ import (
 
 func main() {
 	typeOptions := []string{
-		"✨ feat - A new feature",
-		"🐛 fix - A bug fix",
-		"📝 docs - Documentation only changes",
-		"🎨 style - Code style changes (formatting, etc)",
-		"♻️ refactor - Code refactor, no behavior change",
-		"⚡ perf - Performance improvements",
-		"✅ test - Adding or updating tests",
-		"🔧 chore - Build or tooling changes",
-		"🚀 ci - CI related changes",
+		"feat ✨ - A new feature",
+		"fix 🐛 - A bug fix",
+		"docs 📝 - Documentation only changes",
+		"style 🎨 - Code style changes (formatting, etc)",
+		"refactor ♻️ - Code refactor, no behavior change",
+		"perf ⚡ - Performance improvements",
+		"test ✅ - Adding or updating tests",
+		"chore 🔧 - Build or tooling changes",
+		"ci 🚀 - CI related changes",
 	}
 
 	var selectedType string
