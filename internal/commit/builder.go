@@ -36,3 +36,10 @@ func PreviewCommit(commitMsg string) {
 
 	fmt.Println("\n────────────────────────────────────────────")
 }
+
+// IsGitRepo checks if the current directory is inside a Git repository
+func IsGitRepo() bool {
+	cmd := exec.Command("git", "rev-parse", "--is-inside-work-tree")
+	err := cmd.Run()
+	return err == nil
+}

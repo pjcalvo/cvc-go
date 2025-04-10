@@ -23,6 +23,12 @@ func main() {
 		"🚀 ci - CI related changes",
 	}
 
+	// Check if we're inside a Git repository
+	if !commit.IsGitRepo() {
+		fmt.Println("❌ You must be inside a Git repository to use this tool.")
+		os.Exit(1)
+	}
+
 	var selectedType string
 	survey.AskOne(&survey.Select{
 		Message: "Select the type of change:",
