@@ -13,7 +13,7 @@ func FormatCommit(emoji, typ, scope, message string) string {
 	if scope != "" {
 		scopePart = fmt.Sprintf("(%s)", scope)
 	}
-	return fmt.Sprintf("%s %s %s: %s", emoji, typ, scopePart, message)
+	return fmt.Sprintf("%s%s: %s %s", typ, scopePart, emoji, message)
 }
 
 func PreviewCommit(commitMsg string) {
