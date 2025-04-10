@@ -7,10 +7,10 @@ import (
 	"strings"
 
 	"github.com/AlecAivazis/survey/v2"
+	"github.com/pjcalvo/cvc-go/internal/commit"
 )
 
 func main() {
-	// Define conventional commit types with emojis
 	typeOptions := []string{
 		"✨ feat - A new feature",
 		"🐛 fix - A bug fix",
@@ -32,7 +32,7 @@ func main() {
 	// Prompt for scope (optional)
 	var scope string
 	survey.AskOne(&survey.Input{
-		Message: "Scope (e.g. auth, api, dashboard, PROJ-123):",
+		Message: "Scope (e.g. auth, api, dashboard):",
 	}, &scope)
 
 	// Prompt for commit message
@@ -41,24 +41,21 @@ func main() {
 		Message: "Commit message:",
 	}, &message)
 
-	// Parse the type and emoji
-	emoji := strings.Split(selectedType, " ")[0]
-	typeKey := strings.Split(selectedType, " ")[1]
+	// Parse selected type
+	parts := strings.Split(selectedType, " ")
+	emoji := parts[0]
+	typ := parts[1]
 
-	// Build commit message with optional scope
-	scopePart := ""
-	if scope != "" {
-		scopePart = fmt.Sprintf("(%s)", scope)
-	}
-	commit := fmt.Sprintf("%s %s%s: %s", emoji, typeKey, scopePart, message)
+	// Format commit message
+	commitMsg := commit.FormatCommit(emoji, typ, scope, message)
 
-	// Show commit preview
+	// Preview commit
 	fmt.Println("\n📝 Commit preview:")
 	fmt.Println("---------------------------------")
-	fmt.Println(commit)
-	fmt.Println("---------------------------------\n")
+	fmt.Println(commitMsg)
+	fmt.Println("---------------------------------")
 
-	// Confirm commit
+	// Confirm
 	var confirm bool
 	survey.AskOne(&survey.Confirm{
 		Message: "Do you want to commit this?",
@@ -70,11 +67,11 @@ func main() {
 		return
 	}
 
-	// Optional: stage all changes
+	// Optionally stage all changes
 	exec.Command("git", "add", ".").Run()
 
-	// Run git commit
-	cmd := exec.Command("git", "commit", "-m", commit)
+	// Commit
+	cmd := exec.Command("git", "commit", "-m", commitMsg)
 	output, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Println("❌ Commit failed:")
