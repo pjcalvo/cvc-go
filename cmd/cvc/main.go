@@ -38,7 +38,7 @@ func main() {
 	// Prompt for scope (optional)
 	var scope string
 	survey.AskOne(&survey.Input{
-		Message: "Scope (e.g. auth, api, dashboard):",
+		Message: "Scope (e.g. JIRA-001, api, dashboard):",
 	}, &scope)
 
 	// Prompt for commit message
@@ -68,9 +68,6 @@ func main() {
 		fmt.Println("❌ Commit cancelled.")
 		return
 	}
-
-	// Optionally stage all changes
-	exec.Command("git", "add", ".").Run()
 
 	// Commit
 	cmd := exec.Command("git", "commit", "-m", commitMsg)
