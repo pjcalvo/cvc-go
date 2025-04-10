@@ -24,11 +24,13 @@
 ### 🛠️ With Go
 
 ```sh
-go install github.com/pjcalvo/cvc/cmd/cvc@latest
+go install github.com/pjcalvo/cvc-go/cmd/cvc@latest
 ```
 
 _Make sure your $GOPATH/bin is in your $PATH._
 
 ### 🌀 With curl (coming soon) 
 
+```sh
 curl -sSf https://raw.githubusercontent.com/pjcalvo/cvc-go/main/install.sh | sh
+```
