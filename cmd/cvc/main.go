@@ -78,5 +78,8 @@ func main() {
 		os.Exit(1)
 	}
 
+	fmt.Println("Executing command:")
+	fmt.Printf("   git commit -m %q\n", commitMsg)
+	fmt.Println("────────────────────────────────────────────")
 	fmt.Println("✅ Commit successful!")
 }
