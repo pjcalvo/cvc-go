@@ -49,11 +49,7 @@ func main() {
 	// Format commit message
 	commitMsg := commit.FormatCommit(emoji, typ, scope, message)
 
-	// Preview commit
-	fmt.Println("\n📝 Commit preview:")
-	fmt.Println("---------------------------------")
-	fmt.Println(commitMsg)
-	fmt.Println("---------------------------------")
+	commit.PreviewCommit(commitMsg)
 
 	// Confirm
 	var confirm bool

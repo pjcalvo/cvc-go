@@ -4,16 +4,23 @@ import (
 	"testing"
 )
 
-func TestCommitFormat(t *testing.T) {
-	emoji := "✨"
-	typ := "feat"
-	scope := "auth"
-	message := "add login"
+func TestFormatCommit(t *testing.T) {
+	tests := []struct {
+		emoji   string
+		typ     string
+		scope   string
+		message string
+		want    string
+	}{
+		{"✨", "feat", "auth", "add login support", "✨ feat(auth): add login support"},
+		{"🐛", "fix", "", "null pointer error", "🐛 fix: null pointer error"},
+		{"📝", "docs", "readme", "update instructions", "📝 docs(readme): update instructions"},
+	}
 
-	expected := "✨ feat(auth): add login"
-	result := FormatCommit(emoji, typ, scope, message)
-
-	if result != expected {
-		t.Errorf("Expected %q, got %q", expected, result)
+	for _, tt := range tests {
+		got := FormatCommit(tt.emoji, tt.typ, tt.scope, tt.message)
+		if got != tt.want {
+			t.Errorf("FormatCommit() = %q; want %q", got, tt.want)
+		}
 	}
 }
