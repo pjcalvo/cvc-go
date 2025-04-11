@@ -24,9 +24,9 @@ jobs:
       - name: Build binaries
         run: |
           mkdir -p dist
-          GOOS=linux GOARCH=amd64 go build -o dist/cvc-linux cmd/cvc
-          GOOS=darwin GOARCH=amd64 go build -o dist/cvc-darwin cmd/cvc
-          GOOS=windows GOARCH=amd64 go build -o dist/cvc.exe cmd/cvc
+          GOOS=linux GOARCH=amd64 go build -o dist/cvc-linux cmd/cvc/main.go
+          GOOS=darwin GOARCH=amd64 go build -o dist/cvc-darwin cmd/cvc/main.go
+          GOOS=windows GOARCH=amd64 go build -o dist/cvc.exe cmd/cvc/main.go
 
       - name: Upload to release
         uses: softprops/action-gh-release@v1

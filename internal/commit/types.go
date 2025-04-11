@@ -1,7 +1,7 @@
-package main
+package git
 
 var (
-	typeOptions = []string{
+	TypeOptions = []string{
 		"🚧 build - Build system or dependency changes",
 		"🚀 ci - CI related changes",
 		"🔧 chore - Build or tooling changes",

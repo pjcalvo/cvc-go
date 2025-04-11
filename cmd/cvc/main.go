@@ -7,12 +7,12 @@ import (
 	"strings"
 
 	"github.com/AlecAivazis/survey/v2"
-	"github.com/pjcalvo/cvc-go/internal/commit"
+	git "github.com/pjcalvo/cvc-go/internal/commit"
 )
 
 func main() {
 	// Check if we're inside a Git repository
-	if !commit.IsGitRepo() {
+	if !git.IsGitRepo() {
 		fmt.Println("❌ You must be inside a Git repository to use this tool.")
 		os.Exit(1)
 	}
@@ -20,7 +20,7 @@ func main() {
 	var selectedType string
 	survey.AskOne(&survey.Select{
 		Message: "Select the type of change:",
-		Options: typeOptions,
+		Options: git.TypeOptions,
 	}, &selectedType)
 
 	// Prompt for scope (optional)
@@ -41,9 +41,9 @@ func main() {
 	typ := parts[1]
 
 	// Format commit message
-	commitMsg := commit.FormatCommit(emoji, typ, scope, message)
+	commitMsg := git.FormatCommit(emoji, typ, scope, message)
 
-	commit.PreviewCommit(commitMsg)
+	git.PreviewCommit(commitMsg)
 
 	// Confirm
 	var confirm bool
